@@ -10,27 +10,27 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="inline-block mb-2 mt-16 px-2 py-1 rounded-full bg-[#eceae8]">
+        <div className="inline-block mb-2 mt-20 px-3 py-1 rounded-full bg-[#eceae8]">
           <span className="text-sm font-bold text-black/50">Contract management reimagined</span>
         </div>
 
         <h1 className="text-6xl font-bold mb-2 text-balance text-black">
           Where teams{" "}
-          <span className="inline-flex -space-x-3">
+          <span className="inline-flex -space-x-3 -translate-x-2">
             <img
               src="https://images.unsplash.com/photo-1654110455429-cf322b40a906?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880"
               alt="Team avatars"
-              className="h-12 rounded-full border-4 border-background"
+              className="h-12 rounded-full border-4 border-background translate-y-1.5"
             />
             <img
               src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880"
               alt="Team avatars"
-              className="h-12 rounded-full border-4 border-white"
+              className="h-12 rounded-full border-4 border-white translate-y-1.5"
             />
             <img
               src="https://plus.unsplash.com/premium_photo-1739786996060-2769f1ded135?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2080"
               alt="Team avatars"
-              className="h-12 rounded-full border-4 border-white"
+              className="h-12 rounded-full border-4 border-white translate-y-1.5"
             />
           </span>
           turn agreements into motion.
@@ -60,7 +60,11 @@ export default function HeroSection() {
         </div>
 
         <div className="mt-10 w-full">
-          <img src="/hero.png" alt="Hero dashboard" className="w-full rounded-xl border-[6px] border-white/30 backdrop-blur-xl shadow-2xl" />
+          <img
+            src="/hero.png"
+            alt="Hero dashboard"
+            className="w-full rounded-xl border-[6px] border-white/30 backdrop-blur-xl shadow-2xl"
+          />
         </div>
       </div>
     </section>

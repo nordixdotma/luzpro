@@ -4,16 +4,31 @@ import { usePathname } from "next/navigation"
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+
+type NavItem = NavLink | NavDropdown
+
+interface NavLink {
+  name: string
+  href: string
+  type?: never
+}
+
+interface NavDropdown {
+  name: string
+  type: "dropdown"
+  items: Array<{ name: string; href: string }>
+}
 
 export default function Header() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [hovered, setHovered] = useState<number | null>(null)
+  const [hoveredDropdown, setHoveredDropdown] = useState<string | null>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   const shouldShowScrolledHeader = false
 
@@ -39,16 +54,16 @@ export default function Header() {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setMobileMenuOpen(false)
       }
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setHoveredDropdown(null)
+      }
     }
 
-    if (mobileMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside)
-    }
-
+    document.addEventListener("mousedown", handleClickOutside)
     return () => {
       document.removeEventListener("mousedown", handleClickOutside)
     }
-  }, [mobileMenuOpen])
+  }, [])
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -62,16 +77,28 @@ export default function Header() {
     }
   }, [mobileMenuOpen])
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { name: "Home", href: "/" },
     { name: "Pricing", href: "#pricing" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "About", href: "#about" },
+    {
+      name: "Resources",
+      type: "dropdown",
+      items: [
+        { name: "Documentation", href: "/docs" },
+        { name: "Blog", href: "/blog" },
+        { name: "Guides", href: "/guides" },
+      ],
+    },
+    {
+      name: "Company",
+      type: "dropdown",
+      items: [
+        { name: "About", href: "/about" },
+        { name: "Careers", href: "/careers" },
+        { name: "Contact", href: "/contact" },
+      ],
+    },
   ]
-
-  const toggleDropdown = (name: string) => {
-    setActiveDropdown(activeDropdown === name ? null : name)
-  }
 
   return (
     <motion.header ref={headerRef} className="fixed top-0 left-0 right-0 z-40 w-full">
@@ -81,7 +108,7 @@ export default function Header() {
           boxShadow: visible
             ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
             : "none",
-          width: visible ? "80%" : "50%",
+          width: visible ? "80%" : "90%",
           y: visible ? 20 : 10,
           backgroundColor: visible ? "#FFFFFF" : "transparent",
         }}
@@ -94,34 +121,97 @@ export default function Header() {
           minWidth: "800px",
           borderRadius: visible ? "0.375rem" : "9999px",
         }}
-        className={`relative z-60 mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start px-4 py-2 lg:flex ${visible ? "bg-white/80" : "bg-transparent"
-          }`}
+        className={`relative z-60 mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start px-4 py-2 lg:flex ${
+          visible ? "bg-white/80" : "bg-transparent"
+        }`}
       >
         <Link href="/" className="relative z-20 mr-4 flex items-center px-2 py-1">
-          <span className={`text-2xl font-bold transition-colors ${visible ? "text-primary" : "text-black"}`}>Luz Pro</span>
+          <span className={`text-2xl font-bold transition-colors ${visible ? "text-primary" : "text-black"}`}>
+            Luz Pro
+          </span>
         </Link>
 
         <motion.div
-          onMouseLeave={() => setHovered(null)}
+          onMouseLeave={() => {
+            setHovered(null)
+            setHoveredDropdown(null)
+          }}
           className="absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-1 text-sm font-medium lg:flex"
         >
           {navItems.map((item, idx) => (
             <div key={`nav-item-${idx}`} className="relative">
-              <Link
-                onMouseEnter={() => setHovered(idx)}
-                className={`relative px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${visible ? "text-black hover:text-primary" : "text-black"
+              {item.type === "dropdown" ? (
+                <div
+                  ref={dropdownRef}
+                  onMouseEnter={() => setHoveredDropdown(item.name)}
+                  onMouseLeave={() => setHoveredDropdown(null)}
+                  className="relative"
+                >
+                  <button
+                    className={`relative px-4 py-2 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1 ${
+                      hoveredDropdown === item.name
+                        ? "text-white"
+                        : visible
+                          ? "text-black hover:text-white"
+                          : "text-black"
+                    }`}
+                  >
+                    {hoveredDropdown === item.name && (
+                      <motion.div
+                        layoutId="hovered"
+                        className="absolute inset-0 h-full w-full rounded-full bg-primary"
+                        transition={{ type: "spring", duration: 0.4 }}
+                      />
+                    )}
+                    <span className="relative z-20 flex items-center gap-1">
+                      {item.name}
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform ${hoveredDropdown === item.name ? "rotate-180" : ""}`}
+                      />
+                    </span>
+                  </button>
+
+                  <AnimatePresence>
+                    {hoveredDropdown === item.name && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden z-50"
+                      >
+                        {item.items?.map((subitem, subidx) => (
+                          <Link
+                            key={subidx}
+                            href={subitem.href}
+                            className="block px-4 py-3 text-black hover:bg-gray-100 transition-colors text-sm font-medium"
+                          >
+                            {subitem.name}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link
+                  onMouseEnter={() => setHovered(idx)}
+                  className={`relative px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    hovered === idx ? "text-white" : visible ? "text-black hover:text-white" : "text-black"
                   } ${pathname && pathname === item.href ? "font-semibold" : ""}`}
-                href={item.href}
-              >
-                {hovered === idx && (
-                  <motion.div
-                    layoutId="hovered"
-                    className="absolute inset-0 h-full w-full rounded-full bg-primary"
-                    transition={{ type: "spring", duration: 0.4 }}
-                  />
-                )}
-                <span className="relative z-20">{item.name}</span>
-              </Link>
+                  href={item.href}
+                >
+                  {hovered === idx && (
+                    <motion.div
+                      layoutId="hovered"
+                      className="absolute inset-0 h-full w-full rounded-full bg-primary"
+                      transition={{ type: "spring", duration: 0.4 }}
+                    />
+                  )}
+                  <span className="relative z-20">{item.name}</span>
+                </Link>
+              )}
             </div>
           ))}
         </motion.div>
@@ -129,18 +219,20 @@ export default function Header() {
         <div className="hidden md:flex items-center justify-end relative z-30 gap-4">
           <Button
             variant="outline"
-            className={`transition-all duration-300 rounded-full cursor-pointer ${visible
-                ? "text-white bg-black hover:bg-white hover:text-black border hover:border-black"
-                : "text-black hover:bg-white/10 border-white"
-              }`}
+            className={`transition-all duration-300 rounded-full cursor-pointer ${
+              visible
+                ? "text-white bg-black hover:bg-white hover:text-black border border-black hover:border-black"
+                : "text-black bg-white hover:bg-white/80 hover:text-black border border-gray"
+            }`}
           >
             Sign In
           </Button>
           <Button
-            className={`transition-all duration-300 relative z-30 rounded-full cursor-pointer ${visible
-                ? "bg-primary text-white hover:bg-white hover:text-primary border hover:border border-primary"
-                : "bg-white text-primary hover:bg-primary hover:text-white border-white hover:border-primary"
-              }`}
+            className={`transition-all duration-300 relative z-30 rounded-full cursor-pointer ${
+              visible
+                ? "bg-primary text-white hover:bg-primary/90 border border-primary hover:border-primary"
+                : "bg-black text-white hover:bg-black/90 border border-black hover:border-black"
+            }`}
           >
             Get Started
           </Button>
@@ -167,8 +259,9 @@ export default function Header() {
           stiffness: 200,
           damping: 50,
         }}
-        className={`relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden ${visible ? "bg-white/80" : "bg-transparent"
-          }`}
+        className={`relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden ${
+          visible ? "bg-white/80" : "bg-transparent"
+        }`}
       >
         <div className="flex w-full flex-row items-center justify-between">
           <Link href="/" className="flex items-center">
@@ -213,16 +306,53 @@ export default function Header() {
                       transition={{ delay: 0.1 + index * 0.05, duration: 0.3 }}
                       className="w-full"
                     >
-                      <Link
-                        href={item.href}
-                        className={`flex items-center py-3 px-4 rounded-lg font-medium text-base transition-all cursor-pointer ${pathname && pathname === item.href
-                            ? "bg-gray-100 text-primary"
-                            : "text-gray-800 hover:bg-gray-50"
+                      {item.type === "dropdown" ? (
+                        <div className="w-full">
+                          <button
+                            onClick={() => setHoveredDropdown(hoveredDropdown === item.name ? null : item.name)}
+                            className="w-full flex items-center justify-between py-3 px-4 rounded-lg font-medium text-base text-gray-800 hover:bg-gray-50 transition-all"
+                          >
+                            <span>{item.name}</span>
+                            <ChevronDown
+                              size={16}
+                              className={`transition-transform ${hoveredDropdown === item.name ? "rotate-180" : ""}`}
+                            />
+                          </button>
+                          <AnimatePresence>
+                            {hoveredDropdown === item.name && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="overflow-hidden"
+                              >
+                                {item.items?.map((subitem, subidx) => (
+                                  <Link
+                                    key={subidx}
+                                    href={subitem.href}
+                                    className="block py-2 px-8 text-gray-700 hover:text-primary text-sm"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                  >
+                                    {subitem.name}
+                                  </Link>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          className={`flex items-center py-3 px-4 rounded-lg font-medium text-base transition-all cursor-pointer ${
+                            pathname && pathname === item.href
+                              ? "bg-gray-100 text-primary"
+                              : "text-gray-800 hover:bg-gray-50"
                           }`}
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <span>{item.name}</span>
-                      </Link>
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <span>{item.name}</span>
+                        </Link>
+                      )}
                     </motion.div>
                   ))}
                 </div>
