@@ -261,7 +261,7 @@ export default function Footer() {
        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_auto] items-center gap-4 py-8">
           {/* Left: status pill */}
           <div className="flex justify-start">
-            <div className="bg-white rounded-full px-3 py-2 flex items-center text-sm">
+            <div className="bg-white rounded-full px-3 py-2 flex items-center text-sm border-2 border-gray-200">
               <span
                 className="w-2 h-2 bg-emerald-500 rounded-full mr-2 inline-block animate-pulse"
                 aria-hidden="true"

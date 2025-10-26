@@ -51,7 +51,7 @@ export function PricingCard({ tier, frequency }: PricingCardProps) {
       className={cn(
         "relative flex flex-col gap-6 p-6 transition-all duration-300 overflow-hidden",
         isHighlighted && "bg-foreground text-background",
-        !isHighlighted && "bg-background text-foreground",
+        !isHighlighted && "bg-white text-foreground",
         isPopular && "ring-2 ring-primary",
       )}
     >
