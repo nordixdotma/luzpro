@@ -135,12 +135,12 @@ export default function TestimonialsSection() {
                     ${isCenter ? "opacity-100" : "opacity-60"}
                   `}
                 >
-                  <div className="relative aspect-video bg-muted">
+                  <div className="relative aspect-video bg-muted rounded-md overflow-hidden">
                     {playingVideo === t.id ? (
                       <>
                         <iframe
                           title={`video-${t.id}`}
-                          className="w-full h-full"
+                          className="w-full h-full rounded-md"
                           src={getYouTubeEmbedUrl(t.videoUrl)}
                           allow="autoplay; encrypted-media; picture-in-picture"
                           allowFullScreen
@@ -159,7 +159,7 @@ export default function TestimonialsSection() {
                         <img
                           src={t.thumbnail || "/placeholder.svg"}
                           alt={t.profession}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover rounded-md"
                         />
 
                         {/* Play button ONLY on the center card */}
