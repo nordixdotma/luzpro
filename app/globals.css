@@ -127,5 +127,9 @@
 
 /* Logo drop shadow: applies a shadow only to the opaque pixels of the PNG */
 .logo-drop {
-  filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.50));
+  filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.5));
+}
+
+.hero-background {
+  background-image: url("/heroback.png");
 }
