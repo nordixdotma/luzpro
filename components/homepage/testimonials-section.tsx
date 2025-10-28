@@ -122,20 +122,18 @@ export default function TestimonialsSection() {
             const isCenter = idx === activeIndex
 
             // CTA styles: non-center gets the "hover" visual by default
-            const ctaHoverStyle =
-              "shrink-0 font-semibold rounded-sm py-1 px-2 transition-all border-0 bg-white/10 text-white"
-            const ctaNormalStyle = "shrink-0 font-semibold rounded-sm py-1 px-2 bg-transparent"
+            const ctaHoverStyle = "hidden"
+            const ctaNormalStyle =
+              "shrink-0 font-semibold rounded-sm py-1 px-2 transition-all border-0 bg-primary hover:bg-primary text-white text-xs cursor-pointer"
 
             return (
               // force the slide width to 550px (important: !w- to override any Swiper inline styles)
-              <SwiperSlide key={t.id} className="!w-[550px] flex justify-center">
+              <SwiperSlide key={t.id} className="w-[550px]! flex justify-center">
                 {/* card: fixed width 550px, no border, no shadow */}
                 <div
-                  className={`w-[550px] rounded-md overflow-hidden transition-opacity duration-300 bg-transparent
+                  className={`w-[550px] rounded-md overflow-hidden transition-opacity duration-300 bg-transparent shadow-none border-0
                     ${isCenter ? "opacity-100" : "opacity-60"}
                   `}
-                  // remove box-shadow/border explicitly if any global styles apply
-                  style={{ boxShadow: "none", border: "none" }}
                 >
                   <div className="relative aspect-video bg-muted">
                     {playingVideo === t.id ? (
@@ -151,7 +149,7 @@ export default function TestimonialsSection() {
                         <button
                           onClick={() => setPlayingVideo(null)}
                           aria-label="Close video"
-                          className="absolute top-2 right-2 rounded-full px-2 py-1 bg-black/60 text-white text-sm"
+                          className="absolute top-2 right-2 rounded-full px-2.5 py-1 bg-black/60 text-white text-sm cursor-pointer"
                         >
                           ×
                         </button>
@@ -169,7 +167,7 @@ export default function TestimonialsSection() {
                           <div className="absolute inset-0 flex items-center justify-center">
                             <button
                               onClick={() => setPlayingVideo(t.id)}
-                              className="flex items-center gap-2 bg-white/5 backdrop-blur-xl rounded-full px-2 py-2 hover:scale-105 transition-transform"
+                              className="flex items-center gap-2 bg-white/5 backdrop-blur-lg rounded-full px-2 py-2 hover:scale-105 transition-transform cursor-pointer"
                             >
                               <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-none">
                                 <Play className="w-4 h-4 text-black fill-black ml-0.5" />
@@ -191,10 +189,7 @@ export default function TestimonialsSection() {
                         </div>
                       </div>
 
-                      <Button
-                        variant="ghost"
-                        className={isCenter ? ctaNormalStyle : ctaHoverStyle}
-                      >
+                      <Button variant="ghost" className={isCenter ? ctaNormalStyle : ctaHoverStyle}>
                         Read customer story →
                       </Button>
                     </div>
