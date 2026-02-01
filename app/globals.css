@@ -144,6 +144,12 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  html.loading,
+  html.loading body {
+    overflow: hidden !important;
+    height: 100svh;
+  }
 }
 
 /* Logo drop shadow: applies a shadow only to the opaque pixels of the PNG */

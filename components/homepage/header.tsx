@@ -134,7 +134,7 @@ export default function Header() {
           minWidth: "800px",
           borderRadius: visible ? "0.375rem" : "9999px",
         }}
-        className={`relative z-60 mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start px-4 py-2 lg:flex ${
+        className={`relative z-60 mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start px-4 py-3 lg:flex ${
           visible ? "bg-white/80" : "bg-transparent"
         }`}
       >

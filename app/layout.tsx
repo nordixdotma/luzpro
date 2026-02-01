@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Urbanist, Caveat } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import Preloader from "@/components/homepage/preloader"
 
 const urbanist = Urbanist({ subsets: ["latin"] })
 const caveat = Caveat({ subsets: ["latin"], variable: "--font-caveat" })
@@ -79,8 +80,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="loading">
       <body className={`${urbanist.className} ${caveat.variable} antialiased relative`}>
+        <Preloader />
         {children}
         <Analytics />
       </body>
