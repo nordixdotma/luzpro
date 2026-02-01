@@ -69,7 +69,7 @@ export default function FeaturesSection() {
 
   return (
     <section className="w-full py-10">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-3">
         {/* Tab Navigation */}
         <div className="flex flex-wrap items-center justify-center gap-0 md:gap-1 mb-3">
           {features.map((feature) => (

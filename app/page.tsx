@@ -5,7 +5,9 @@ import FeaturesSection from "@/components/homepage/features-section"
 import TestimonialsSection from "@/components/homepage/testimonials-section"
 import CTASection from "@/components/homepage/cta-section"
 import PriceSection from "@/components/homepage/price-section"
+import FAQSection from "@/components/homepage/faq-section"
 import Footer from "@/components/homepage/footer"
+import TransformationSection from "@/components/homepage/transformation-section"
 
 export default function Home() {
   return (
@@ -14,9 +16,11 @@ export default function Home() {
       <HeroSection />
       <TrustedSection />
       <FeaturesSection />
+      <TransformationSection />
+      <PriceSection />
       <TestimonialsSection />
       <CTASection />
-      <PriceSection />
+      <FAQSection />
       <Footer />
     </main>
   )

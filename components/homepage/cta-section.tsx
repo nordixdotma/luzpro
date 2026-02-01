@@ -12,10 +12,10 @@ export default function CTASection() {
         <div className="bg-black rounded-2xl px-5 py-10 md:px-20 md:py-12 ">
           {/* Centered content */}
           <div className="text-center mb-8 md:mb-20">
-            <h2 className="text-xl md:text-4xl font-medium text-white mb-2 text-balance">
+            <h2 className="text-xl md:text-4xl font-bold text-white mb-2 text-balance">
               Ready to transform your contracts?
             </h2>
-            <p className="text-sm md:text-lg text-white/80 mb-2 md:mb-10 text-balance">
+            <p className="text-white/80 mb-2 md:mb-10 text-balance">
               Join thousands of teams already using Luz Pro to streamline their contract management.
             </p>
 

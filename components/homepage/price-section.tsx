@@ -5,6 +5,8 @@ import { Tab } from "@/components/ui/pricing-tab"
 
 import { motion } from "framer-motion"
 
+import { Zap, Rocket, Building2 } from "lucide-react"
+
 const TIERS: PricingTier[] = [
   {
     name: "Starter",
@@ -14,6 +16,8 @@ const TIERS: PricingTier[] = [
     limitations: ["Advanced analytics", "Priority support", "Custom integrations"],
     cta: "Get started",
     link: "/signup?plan=starter",
+    primaryBorder: true,
+    icon: Zap,
   },
   {
     name: "Professional",
@@ -31,6 +35,7 @@ const TIERS: PricingTier[] = [
     cta: "Get started",
     link: "/signup?plan=professional",
     popular: true,
+    icon: Rocket,
   },
   {
     name: "Enterprise",
@@ -48,7 +53,7 @@ const TIERS: PricingTier[] = [
     limitations: [],
     cta: "Get started",
     link: "/signup?plan=enterprise",
-    highlighted: true,
+    icon: Building2,
   },
 ]
 
@@ -56,12 +61,12 @@ export default function PriceSection() {
   const [frequency, setFrequency] = useState("monthly")
 
   return (
-    <section id="pricing" className="w-full py-10 px-4 sm:px-6 lg:px-8 bg-background rounded-t-4xl overflow-hidden">
+    <section id="pricing" className="w-full py-10 px-3 sm:px-6 lg:px-8 bg-background rounded-t-4xl overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-center gap-6">
           <div className="space-y-2 text-center">
             <div className="space-y-1">
-              <h1 className="text-xl font-medium md:text-4xl text-balance">
+              <h1 className="text-xl font-bold md:text-4xl text-balance">
                 Simple, Transparent{" "}
                 <span className="relative inline-block">
                   <span className="relative z-10">Pricing</span>

@@ -21,7 +21,7 @@ export default function TrustedSection() {
   ]
 
   return (
-    <section className="w-full py-10 px-4 sm:px-6 lg:px-8 bg-background">
+    <section className="w-full py-10 px-3 sm:px-6 lg:px-8 bg-background">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-2">
           <p className="text-black/50 font-bold text-xs md:text-md"> <span className="font-bold text-black">Luz</span> is used by <span className="font-bold text-black">7.000+ teams</span> who've outgrown legal chaos.</p>
