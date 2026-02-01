@@ -68,13 +68,13 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <h4 className="font-semibold mb-4">
-                <span className="font-bold text-foreground/60">PLATFORM</span>
+                <span className="font-bold text-foreground">PLATFORM</span>
               </h4>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Blog
                   </a>
@@ -82,7 +82,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Help Center
                   </a>
@@ -90,7 +90,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     About
                   </a>
@@ -100,13 +100,13 @@ export default function Footer() {
 
             <div>
               <h4 className="font-semibold mb-4">
-                <span className="font-bold text-foreground/60">LEGAL</span>
+                <span className="font-bold text-foreground">LEGAL</span>
               </h4>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Privacy Policy
                   </a>
@@ -114,7 +114,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Terms of Service
                   </a>
@@ -122,7 +122,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Cookie Policy
                   </a>
@@ -132,13 +132,13 @@ export default function Footer() {
 
             <div>
               <h4 className="font-semibold mb-4">
-                <span className="font-bold text-foreground/60">LEGAL</span>
+                <span className="font-bold text-foreground">LEGAL</span>
               </h4>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Privacy Policy
                   </a>
@@ -146,7 +146,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Terms of Service
                   </a>
@@ -154,7 +154,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Cookie Policy
                   </a>
@@ -164,13 +164,13 @@ export default function Footer() {
 
             <div>
               <h4 className="font-semibold mb-4">
-                <span className="font-bold text-foreground/60">LEGAL</span>
+                <span className="font-bold text-foreground">LEGAL</span>
               </h4>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Privacy Policy
                   </a>
@@ -178,7 +178,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Terms of Service
                   </a>
@@ -186,7 +186,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Cookie Policy
                   </a>
@@ -199,13 +199,13 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <h4 className="font-semibold mb-4">
-                <span className="font-bold text-foreground/60">PLATFORM</span>
+                <span className="font-bold text-foreground">PLATFORM</span>
               </h4>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Blog
                   </a>
@@ -213,7 +213,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Help Center
                   </a>
@@ -221,7 +221,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     About
                   </a>
@@ -230,13 +230,13 @@ export default function Footer() {
             </div>
             <div>
               <h4 className="font-semibold mb-4">
-                <span className="font-bold text-foreground/60">PLATFORM</span>
+                <span className="font-bold text-foreground">PLATFORM</span>
               </h4>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Blog
                   </a>
@@ -244,7 +244,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     Help Center
                   </a>
@@ -252,7 +252,7 @@ export default function Footer() {
                 <li>
                   <a
                     href="#"
-                    className="text-foreground font-semibold hover:text-primary transition"
+                    className="text-foreground font-medium hover:text-primary transition"
                   >
                     About
                   </a>

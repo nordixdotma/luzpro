@@ -103,14 +103,14 @@ export default function FAQSection() {
               onMouseEnter={() => handleInteraction(index, true)}
               onMouseLeave={() => handleInteraction(null, false)}
               onClick={() => handleClick(index)}
-              className={`group border-2 transition-colors duration-200 rounded-sm bg-[#f3f1ef] overflow-hidden cursor-pointer h-full ${
+              className={`group border-2 transition-colors duration-200 rounded-sm bg-white overflow-hidden cursor-pointer h-full ${
                 openIndex === index ? "border-primary" : "border-[#e5e7eb] hover:border-primary"
               }`}
             >
               <button
                 className="w-full text-left px-3 py-3 sm:px-5 sm:py-5 flex items-center justify-between gap-4 cursor-pointer"
               >
-                <span className={`font-medium text-base transition-colors duration-200 leading-tight ${
+                <span className={`font-medium text-sm md:text-base transition-colors duration-200 leading-tight ${
                   openIndex === index ? "text-primary" : "text-foreground group-hover:text-primary"
                 }`}>{faq.question}</span>
                 <ChevronDown
@@ -127,7 +127,7 @@ export default function FAQSection() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="px-3 pb-3 sm:px-5 sm:pb-5 text-sm text-muted-foreground leading-relaxed">
+                    <div className="px-3 pb-3 sm:px-5 sm:pb-5 text-xs md:text-sm text-muted-foreground leading-relaxed">
                       {faq.answer}
                     </div>
                   </motion.div>
