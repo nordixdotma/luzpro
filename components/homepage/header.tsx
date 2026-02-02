@@ -18,6 +18,7 @@ interface NavLink {
 interface NavDropdown {
   name: string
   type: "dropdown"
+  description?: string
   items: Array<{ name: string; href: string }>
 }
 
@@ -92,10 +93,22 @@ export default function Header() {
 
   const navItems: NavItem[] = [
     { name: "Home", href: "/" },
+    {
+      name: "Products",
+      type: "dropdown",
+      description: "Advanced tools and frameworks built to accelerate your workflow.",
+      items: [
+        { name: "Features", href: "/#features" },
+        { name: "Solutions", href: "/#solutions" },
+        { name: "Templates", href: "/#templates" },
+        { name: "Integrations", href: "/#integrations" },
+      ],
+    },
     { name: "Pricing", href: "#pricing" },
     {
       name: "Resources",
       type: "dropdown",
+      description: "Guides, APIs, and insights to help you build faster.",
       items: [
         { name: "Documentation", href: "/docs" },
         { name: "Blog", href: "/blog" },
@@ -105,6 +118,7 @@ export default function Header() {
     {
       name: "Company",
       type: "dropdown",
+      description: "Empowering developers through design and performance.",
       items: [
         { name: "About", href: "/about" },
         { name: "Careers", href: "/careers" },
@@ -135,89 +149,135 @@ export default function Header() {
           borderRadius: visible ? "0.375rem" : "9999px",
         }}
         className={`relative z-60 mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start px-4 py-3 lg:flex ${
-          visible ? "bg-white/80" : "bg-transparent"
+          visible ? "bg-white" : "bg-transparent"
         }`}
       >
         <Link href="/" className="relative z-20 mr-4 flex items-center px-2 py-1">
           <Logo className={`h-8 w-8 transition-colors ${visible ? "text-primary" : "text-black"}`} />
         </Link>
 
-        <motion.div
+        <div
           onMouseLeave={() => {
             setHovered(null)
             setHoveredDropdown(null)
           }}
-          className="absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-1 text-sm font-medium lg:flex"
+          className="hidden lg:flex flex-1 items-center justify-center space-x-1"
         >
           {navItems.map((item, idx) => (
-            <div key={`nav-item-${idx}`} className="relative">
+            <div
+              key={`nav-item-${idx}`}
+              className="relative"
+              onMouseEnter={() => {
+                setHovered(idx)
+                setHoveredDropdown(item.type === "dropdown" ? item.name : null)
+              }}
+            >
               {item.type === "dropdown" ? (
                 <div
-                  ref={dropdownRef}
-                  onMouseEnter={() => setHoveredDropdown(item.name)}
-                  onMouseLeave={() => setHoveredDropdown(null)}
-                  className="relative"
+                  className="relative group px-1"
                 >
                   <button
-                    className={`relative px-4 py-2 rounded-full transition-all duration-300 cursor-pointer flex items-center gap-1 ${
-                      hoveredDropdown === item.name
+                    className={`relative px-4 py-2 rounded-full transition-colors duration-300 cursor-pointer flex items-center gap-1.5 text-sm font-medium ${
+                      hovered === idx
                         ? "text-white"
                         : visible
-                          ? "text-black hover:text-white"
+                          ? "text-black"
                           : "text-black"
                     }`}
                   >
-                    {hoveredDropdown === item.name && (
+                    {hovered === idx && (
                       <motion.div
-                        layoutId="hovered"
+                        layoutId="nav-hover-pill"
                         className="absolute inset-0 h-full w-full rounded-full bg-primary"
-                        transition={{ type: "spring", duration: 0.4 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 30,
+                        }}
                       />
                     )}
                     <span className="relative z-20 flex items-center gap-1">
                       {item.name}
                       <ChevronDown
-                        size={16}
-                        className={`transition-transform ${hoveredDropdown === item.name ? "rotate-180" : ""}`}
+                        size={14}
+                        className={`transition-transform duration-300 ${hoveredDropdown === item.name ? "rotate-180" : ""}`}
                       />
                     </span>
                   </button>
 
                   <AnimatePresence>
                     {hoveredDropdown === item.name && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        className="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden z-50"
-                      >
-                        {item.items?.map((subitem, subidx) => (
-                          <Link
-                            key={subidx}
-                            href={subitem.href}
-                            className="block px-4 py-3 text-black hover:bg-gray-100 transition-colors text-sm font-medium"
-                          >
-                            {subitem.name}
-                          </Link>
-                        ))}
-                      </motion.div>
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2">
+                        {/* Invisible bridge to prevent pointer-events from dropping */}
+                        <div className="absolute top-0 left-0 right-0 h-4 -translate-y-full" />
+                        
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                          className="w-[420px] bg-white rounded-lg shadow-[0_15px_50px_rgba(0,0,0,0.12)] border border-gray-100 overflow-hidden z-50 flex flex-row"
+                        >
+                          {/* Info Column (Left) */}
+                          <div className="w-[185px] bg-white p-4 flex flex-col justify-between border-r border-gray-100">
+                            <div>
+                              <h4 className="text-sm font-bold text-black mb-1.5">{item.name}</h4>
+                              <p className="text-[11px] text-gray-500">
+                                {item.description}
+                              </p>
+                            </div>
+                            <div className="mt-6">
+                              <Button className="w-full text-[10px] h-8 bg-primary text-white cursor-pointer rounded-full font-bold shadow-[0_8px_16px_-4px_rgba(255,69,0,0.4)] active:translate-y-0.5">
+                                Book a Call Today
+                              </Button>
+                            </div>
+                          </div>
+
+                          {/* Links Column (Right) */}
+                          <div className="flex-1 p-2 bg-white flex flex-col justify-start pt-3">
+                            <div className="grid grid-cols-1 gap-0.5">
+                              {item.items?.map((subitem, subidx) => (
+                                <Link
+                                  key={subidx}
+                                  href={subitem.href}
+                                  className="group/item flex items-center justify-between px-3 py-2 rounded-md hover:bg-gray-50 transition-all"
+                                >
+                                  <span className="text-gray-800 group-hover/item:text-primary text-[13px] font-medium">
+                                    {subitem.name}
+                                  </span>
+                                  <svg 
+                                    className="w-4 h-4 text-gray-400 group-hover/item:text-primary transform -translate-x-1 opacity-0 group-hover/item:translate-x-0 group-hover/item:opacity-100 transition-all duration-200"
+                                    fill="none" 
+                                    viewBox="0 0 24 24" 
+                                    stroke="currentColor"
+                                  >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
+                      </div>
                     )}
                   </AnimatePresence>
                 </div>
               ) : (
                 <Link
-                  onMouseEnter={() => setHovered(idx)}
-                  className={`relative px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    hovered === idx ? "text-white" : visible ? "text-black hover:text-white" : "text-black"
-                  } ${pathname && pathname === item.href ? "font-semibold" : ""}`}
+                  className={`relative px-4 py-2 rounded-full transition-colors duration-300 cursor-pointer text-sm font-medium flex items-center ${
+                    hovered === idx ? "text-white" : visible ? "text-black" : "text-black"
+                  } ${pathname && pathname === item.href ? "text-primary" : ""}`}
                   href={item.href}
                 >
                   {hovered === idx && (
                     <motion.div
-                      layoutId="hovered"
+                      layoutId="nav-hover-pill"
                       className="absolute inset-0 h-full w-full rounded-full bg-primary"
-                      transition={{ type: "spring", duration: 0.4 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 30,
+                      }}
                     />
                   )}
                   <span className="relative z-20">{item.name}</span>
@@ -225,7 +285,7 @@ export default function Header() {
               )}
             </div>
           ))}
-        </motion.div>
+        </div>
 
         <div className="hidden md:flex items-center justify-end relative z-30 gap-4">
           <Button
@@ -256,7 +316,7 @@ export default function Header() {
           boxShadow: visible
             ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
             : "none",
-          width: visible ? "94%" : "100%",
+          width: visible ? "94%" : "95%",
           paddingRight: visible ? "12px" : "16px",
           paddingLeft: visible ? "12px" : "16px",
           y: visible ? 20 : 0,
@@ -275,12 +335,12 @@ export default function Header() {
         }`}
       >
         <div className="flex w-full flex-row items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <Logo className={`h-8 w-8 transition-colors ${visible ? "text-primary" : "text-black"}`} />
+          <Link href="/" className={`flex items-center relative transition-all duration-300 ${mobileMenuOpen ? "z-[70]" : "z-20"}`}>
+            <Logo className={`h-8 w-8 transition-colors ${mobileMenuOpen ? "text-white" : visible ? "text-primary" : "text-black"}`} />
           </Link>
 
           <button
-            className="p-2 rounded-full cursor-pointer text-black"
+            className={`p-2 rounded-full cursor-pointer transition-all duration-300 relative ${mobileMenuOpen ? "text-white z-[70]" : "text-black z-20"}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -366,11 +426,11 @@ export default function Header() {
                   ))}
                 </div>
 
-                <div className="w-full pt-4 border-t border-gray-100 flex gap-2">
-                  <Button variant="outline" className="flex-1 bg-transparent cursor-pointer rounded-full">
+                <div className="w-full pt-6 border-t border-gray-100 flex justify-center gap-3">
+                  <Button className="h-11 w-[140px] bg-black text-white border border-black cursor-pointer rounded-full font-semibold text-xs transition-colors hover:bg-black/90">
                     Sign In
                   </Button>
-                  <Button className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground cursor-pointer rounded-full">
+                  <Button className="h-11 w-[140px] bg-primary hover:bg-primary/90 text-white cursor-pointer rounded-full font-semibold text-xs shadow-sm">
                     Get Started
                   </Button>
                 </div>

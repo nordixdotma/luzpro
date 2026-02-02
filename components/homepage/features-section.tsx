@@ -93,7 +93,7 @@ export default function FeaturesSection() {
 
         {/* Feature Content */}
         <div
-          className={`${currentFeature.bgColor} ${currentFeature.textColor} border-2 ${currentFeature.borderColor} max-w-7xl mx-auto rounded-2xl overflow-hidden transition-all duration-500`}
+          className={`${currentFeature.bgColor} ${currentFeature.textColor} border-2 ${currentFeature.borderColor} max-w-7xl mx-auto rounded-xl overflow-hidden transition-all duration-500`}
         >
           <div className="grid md:grid-cols-2 gap-6 py-4 px-4 md:p-8 min-h-0 md:min-h-[600px]">
             {/* Left Content */}
@@ -110,7 +110,7 @@ export default function FeaturesSection() {
               
               {/* Description */}
               <div className="mt-4 md:mt-12">
-                <p className="text-base md:text-lg leading-relaxed opacity-80 max-w-md">
+                <p className="text-base md:text-lg opacity-80 max-w-md">
                   {currentFeature.description}
                 </p>
               </div>

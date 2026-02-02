@@ -9,7 +9,7 @@ export default function CTASection() {
     <section className="w-full py-10 px-3 lg:px-8 bg-background">
       <div className="max-w-7xl mx-auto">
         {/* Black background container */}
-        <div className="bg-black rounded-2xl px-5 py-10 md:px-20 md:py-12 ">
+        <div className="bg-black rounded-lg md:rounded-xl px-5 py-10 md:px-20 md:py-12 ">
           {/* Centered content */}
           <div className="text-center mb-8 md:mb-20">
             <h2 className="text-xl md:text-4xl font-bold text-white mb-2 text-balance">

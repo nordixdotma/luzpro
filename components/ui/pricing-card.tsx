@@ -36,7 +36,7 @@ export function PricingCard({ tier, frequency }: PricingCardProps) {
   return (
     <div
       className={cn(
-        "relative flex flex-col h-full w-full rounded-xl border-2 p-1.5 transition-all duration-300",
+        "relative flex flex-col h-full w-full rounded-lg md:rounded-xl border-2 p-1.5 transition-all duration-300",
         isDark 
           ? "bg-foreground text-background border-white/10" 
           : "bg-white text-foreground border-border",
@@ -60,7 +60,7 @@ export function PricingCard({ tier, frequency }: PricingCardProps) {
       )}
       {/* Top Section / Header */}
       <div className={cn(
-        "relative mb-4 rounded-lg border-2 px-4 py-3 overflow-hidden",
+        "relative mb-4 rounded-md md:rounded-lg border-2 px-4 py-3 overflow-hidden",
         isDark ? "bg-white/10 border-white/20" : "bg-zinc-200/50 border-zinc-200"
       )}>
         {/* Glass effect gradient for dark cards */}
@@ -100,7 +100,7 @@ export function PricingCard({ tier, frequency }: PricingCardProps) {
           </span>
         </div>
 
-        <p className={cn("text-xs leading-relaxed", isDark ? "text-background/60" : "text-muted-foreground")}>
+        <p className={cn("text-xs", isDark ? "text-background/60" : "text-muted-foreground")}>
           {tier.description}
         </p>
 

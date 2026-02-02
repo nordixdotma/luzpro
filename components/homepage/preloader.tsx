@@ -9,25 +9,22 @@ export default function Preloader() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false)
+      // Remove scroll block immediately when animation finishes
+      document.documentElement.classList.remove("loading")
     }, 2000)
 
     return () => clearTimeout(timer)
   }, [])
 
   return (
-    <AnimatePresence 
-      mode="wait" 
-      onExitComplete={() => {
-        document.documentElement.classList.remove("loading")
-      }}
-    >
+    <AnimatePresence mode="wait">
       {loading && (
         <motion.div
           key="preloader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          exit={{ opacity: 0, pointerEvents: "none" }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="fixed inset-0 z-99999 w-full h-svh flex items-center justify-center bg-transparent"
+          className="fixed inset-0 z-999999 w-full h-svh flex items-center justify-center bg-transparent"
           style={{ height: "100svh" }}
         >
           <motion.svg 

@@ -301,7 +301,7 @@ export default function TransformationSection() {
                   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
                 >
                   <motion.div 
-                    className="relative p-px md:p-[4px] rounded-full bg-gradient-to-r from-primary via-[#f3f1ef] to-primary animate-bounce overflow-hidden group shadow-xl transition-transform hover:scale-105 active:scale-95"
+                    className="relative p-px md:p-[4px] rounded-full bg-gradient-to-r from-primary via-[#f3f1ef] to-primary animate-pulse hover:animate-none overflow-hidden group shadow-xl transition-transform hover:scale-105 active:scale-95"
                   >
                     <motion.button
                       onClick={handleFix}
@@ -398,7 +398,7 @@ export default function TransformationSection() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.5 }}
                   onClick={() => setAnimationState('chaos')}
-                  className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-sm text-gray-400 hover:text-gray-600 underline cursor-pointer"
+                  className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-sm text-neutral-500 hover:text-neutral-600 underline cursor-pointer"
                 >
                   ← Back to chaos
                 </motion.button>
