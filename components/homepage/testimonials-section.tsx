@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Play } from "lucide-react"
 import ClassNames from "embla-carousel-class-names"
+import Autoplay from "embla-carousel-autoplay"
 import { motion } from "framer-motion"
 import {
   Carousel,
@@ -27,7 +28,7 @@ const testimonials: Testimonial[] = [
     videoUrl: "https://youtu.be/C8JC023Z4SE?si=_Fd_gMtk9io0r9p7",
     thumbnail: "https://images.unsplash.com/photo-1532170579297-281918c8ae72?q=80&w=1184&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     quote:
-      "fynk makes life much easier for us and our clients when it comes to contract management and digital signatures!",
+      "luz makes life much easier for us and our clients when it comes to contract management and digital signatures!",
     profession: "Brandon Zell - Chief Accounting Officer",
   },
   {
@@ -196,7 +197,13 @@ export default function TestimonialsSection() {
           </span>
         </h2>
 
-        <Carousel options={{ loop: true, align: "center" }} plugins={[ClassNames() as any]}>
+        <Carousel 
+          options={{ loop: true, align: "center" }} 
+          plugins={[
+            ClassNames() as any,
+            Autoplay({ delay: 3000, stopOnInteraction: false, stopOnMouseEnter: true }) as any
+          ]}
+        >
           <SliderContainer>
             {testimonials.map((testimonial, index) => (
               <Slider
