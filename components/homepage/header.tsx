@@ -91,6 +91,17 @@ export default function Header() {
     }
   }, [mobileMenuOpen])
 
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault()
+      const destination = document.querySelector(href)
+      if (destination) {
+        destination.scrollIntoView({ behavior: "smooth" })
+      }
+      setMobileMenuOpen(false)
+    }
+  }
+
   const navItems: NavItem[] = [
     { name: "Home", href: "/" },
     {
@@ -98,10 +109,10 @@ export default function Header() {
       type: "dropdown",
       description: "Advanced tools and frameworks built to accelerate your workflow.",
       items: [
-        { name: "Features", href: "/#features" },
-        { name: "Solutions", href: "/#solutions" },
-        { name: "Templates", href: "/#templates" },
-        { name: "Integrations", href: "/#integrations" },
+        { name: "Features", href: "#" },
+        { name: "Solutions", href: "#" },
+        { name: "Templates", href: "#" },
+        { name: "Integrations", href: "#" },
       ],
     },
     { name: "Pricing", href: "#pricing" },
@@ -110,9 +121,9 @@ export default function Header() {
       type: "dropdown",
       description: "Guides, APIs, and insights to help you build faster.",
       items: [
-        { name: "Documentation", href: "/docs" },
-        { name: "Blog", href: "/blog" },
-        { name: "Guides", href: "/guides" },
+        { name: "Documentation", href: "#" },
+        { name: "Blog", href: "#" },
+        { name: "Guides", href: "#" },
       ],
     },
     {
@@ -120,9 +131,9 @@ export default function Header() {
       type: "dropdown",
       description: "Empowering developers through design and performance.",
       items: [
-        { name: "About", href: "/about" },
-        { name: "Careers", href: "/careers" },
-        { name: "Contact", href: "/contact" },
+        { name: "About", href: "#" },
+        { name: "Careers", href: "#" },
+        { name: "Contact", href: "#" },
       ],
     },
   ]
@@ -240,6 +251,7 @@ export default function Header() {
                                 <Link
                                   key={subidx}
                                   href={subitem.href}
+                                  onClick={(e) => handleScroll(e, subitem.href)}
                                   className="group/item flex items-center justify-between px-3 py-2 rounded-md hover:bg-gray-50 transition-all"
                                 >
                                   <span className="text-gray-800 group-hover/item:text-primary text-[13px] font-medium">
@@ -268,6 +280,7 @@ export default function Header() {
                     hovered === idx ? "text-white" : visible ? "text-black" : "text-black"
                   } ${pathname && pathname === item.href ? "text-primary" : ""}`}
                   href={item.href}
+                  onClick={(e) => handleScroll(e, item.href)}
                 >
                   {hovered === idx && (
                     <motion.div
@@ -400,7 +413,7 @@ export default function Header() {
                                     key={subidx}
                                     href={subitem.href}
                                     className="block py-2 px-8 text-gray-700 hover:text-primary text-sm"
-                                    onClick={() => setMobileMenuOpen(false)}
+                                    onClick={(e) => handleScroll(e, subitem.href)}
                                   >
                                     {subitem.name}
                                   </Link>
@@ -417,7 +430,7 @@ export default function Header() {
                               ? "bg-gray-100 text-primary"
                               : "text-gray-800 hover:bg-gray-50"
                           }`}
-                          onClick={() => setMobileMenuOpen(false)}
+                          onClick={(e) => handleScroll(e, item.href)}
                         >
                           <span>{item.name}</span>
                         </Link>
