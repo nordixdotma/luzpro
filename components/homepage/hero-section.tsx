@@ -64,7 +64,7 @@ export default function HeroSection() {
         </p>
 
         <div className="flex flex-row gap-2 md:gap-4 justify-center">
-          <Link href="/signup?plan=starter">
+          <Link href="https://luzapp.vercel.app">
             <Button
               size="lg"
               className="bg-white hover:bg-white/90 border-2 border-gray text-black font-bold rounded-full px-4 py-3 md:px-6 md:py-3 cursor-pointer text-xs md:text-sm h-auto"
@@ -87,7 +87,7 @@ export default function HeroSection() {
 
         <div className="mt-10 w-full">
           <img
-            src="https://cdnb.ganttpro.com/uploads/2021/11/asana-for-small-business-project-management.png"
+            src="/heroimage.png"
             alt="Hero dashboard"
             className="w-full rounded-lg md:rounded-2xl border-4 md:border-[6px] border-white/30 backdrop-blur-md shadow-[0_2px_10px_rgba(0,0,0,0.15)] backdrop-saturate-200"
           />

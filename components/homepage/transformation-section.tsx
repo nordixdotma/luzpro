@@ -386,7 +386,7 @@ export default function TransformationSection() {
                 {/* Clean Dashboard Preview */}
                 <div className="w-full max-w-4xl bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
                   <img 
-                    src="https://cdnb.ganttpro.com/uploads/2021/11/asana-for-small-business-project-management.png" 
+                    src="/heroimage.png" 
                     alt="Clean Dashboard" 
                     className="w-full h-auto object-cover"
                   />

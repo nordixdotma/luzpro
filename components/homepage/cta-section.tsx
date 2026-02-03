@@ -21,7 +21,7 @@ export default function CTASection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-row gap-4 justify-center">
-              <Link href="/signup?plan=starter">
+              <Link href="https://luzapp.vercel.app">
                 <Button
                   className="bg-white hover:bg-white/90 text-black rounded-full px-4 py-3 md:px-6 md:py-4 cursor-pointer w-full font-semibold text-sm md:text-base h-auto"
                 >

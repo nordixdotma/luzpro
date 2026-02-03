@@ -301,25 +301,29 @@ export default function Header() {
         </div>
 
         <div className="hidden md:flex items-center justify-end relative z-30 gap-4">
-          <Button
-            variant="outline"
-            className={`transition-all duration-300 rounded-full cursor-pointer ${
-              visible
-                ? "text-white bg-black hover:bg-white hover:text-black border border-black hover:border-black"
-                : "text-black bg-white hover:bg-white/80 hover:text-black border border-gray"
-            }`}
-          >
-            Sign In
-          </Button>
-          <Button
-            className={`transition-all duration-300 relative z-30 rounded-full cursor-pointer ${
-              visible
-                ? "bg-primary text-white hover:bg-primary/90 border border-primary hover:border-primary"
-                : "bg-black text-white hover:bg-black/90 border border-black hover:border-black"
-            }`}
-          >
-            Get Started
-          </Button>
+          <Link href="https://luzapp.vercel.app">
+            <Button
+              variant="outline"
+              className={`transition-all duration-300 rounded-full cursor-pointer ${
+                visible
+                  ? "text-white bg-black hover:bg-white hover:text-black border border-black hover:border-black"
+                  : "text-black bg-white hover:bg-white/80 hover:text-black border border-gray"
+              }`}
+            >
+              Sign In
+            </Button>
+          </Link>
+          <Link href="https://luzapp.vercel.app">
+            <Button
+              className={`transition-all duration-300 relative z-30 rounded-full cursor-pointer ${
+                visible
+                  ? "bg-primary text-white hover:bg-primary/90 border border-primary hover:border-primary"
+                  : "bg-black text-white hover:bg-black/90 border border-black hover:border-black"
+              }`}
+            >
+              Get Started
+            </Button>
+          </Link>
         </div>
       </motion.div>
 
@@ -440,12 +444,16 @@ export default function Header() {
                 </div>
 
                 <div className="w-full pt-6 border-t border-gray-100 flex justify-center gap-3">
-                  <Button className="h-11 w-[140px] bg-black text-white border border-black cursor-pointer rounded-full font-semibold text-xs transition-colors hover:bg-black/90">
-                    Sign In
-                  </Button>
-                  <Button className="h-11 w-[140px] bg-primary hover:bg-primary/90 text-white cursor-pointer rounded-full font-semibold text-xs shadow-sm">
-                    Get Started
-                  </Button>
+                  <Link href="https://luzapp.vercel.app">
+                    <Button className="h-11 w-[140px] bg-black text-white border border-black cursor-pointer rounded-full font-semibold text-xs transition-colors hover:bg-black/90">
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link href="https://luzapp.vercel.app">
+                    <Button className="h-11 w-[140px] bg-primary hover:bg-primary/90 text-white cursor-pointer rounded-full font-semibold text-xs shadow-sm">
+                      Get Started
+                    </Button>
+                  </Link>
                 </div>
               </motion.div>
             </>
