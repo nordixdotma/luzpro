@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 
 export default function HeroSection() {
   return (
-    <section className="hero-background relative w-full flex items-center justify-center pt-24 pb-8 md:pt-20 2xl:pt-52 md:pb-20 overflow-hidden bg-size-[100%_auto] md:bg-cover bg-position-[center_80%] md:bg-center bg-no-repeat">
+    <section className="hero-background relative w-full flex items-center justify-center pt-24 pb-8 md:pt-20 md:pb-20 overflow-hidden bg-size-[100%_auto] md:bg-cover bg-position-[center_80%] md:bg-center bg-no-repeat">
       <div className="absolute inset-0 w-full h-full bg-transparent" />
 
       {/* Content */}
