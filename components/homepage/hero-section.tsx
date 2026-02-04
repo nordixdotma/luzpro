@@ -10,12 +10,12 @@ export default function HeroSection() {
       <div className="absolute inset-0 w-full h-full bg-transparent" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl 2xl:max-w-[80%] mx-auto px-2 md:px-6 lg:px-8 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-2 md:px-6 lg:px-8 text-center">
         <div className="inline-block mb-2 mt-10 md:mt-20 px-3 py-1 rounded-full bg-[#eceae8]">
           <span className="text-xs md:text-sm font-bold text-black/50">Contract management reimagined</span>
         </div>
 
-        <h1 className="text-4xl md:text-6xl 2xl:text-7xl font-bold mb-2 text-balance text-black px-2 md:px-0">
+        <h1 className="text-4xl md:text-6xl font-bold mb-2 text-balance text-black px-2 md:px-0">
           Where teams{" "}
           <span className="inline-flex -space-x-3 -translate-x-2">
             <img
