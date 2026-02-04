@@ -61,8 +61,8 @@ export default function PriceSection() {
   const [frequency, setFrequency] = useState("monthly")
 
   return (
-    <section id="pricing" className="w-full py-10 px-3 sm:px-6 lg:px-8 bg-background rounded-t-4xl overflow-hidden scroll-mt-20">
-      <div className="max-w-7xl mx-auto">
+    <section id="pricing" className="w-full py-10 px-3 sm:px-6 lg:px-8 bg-background overflow-hidden scroll-mt-20">
+      <div className="max-w-7xl  mx-auto">
         <div className="flex flex-col items-center gap-6">
           <div className="space-y-2 text-center">
             <div className="space-y-1">
