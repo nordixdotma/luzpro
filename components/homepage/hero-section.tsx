@@ -59,7 +59,7 @@ export default function HeroSection() {
           .
         </h1>
 
-        <p className="text-sm md:text-xl 2xl:text-2xl font-medium text-black/50 mb-6 text-balance max-w-2xl mx-auto">
+        <p className="text-sm md:text-xl font-medium text-black/50 mb-6 text-balance max-w-2xl mx-auto">
           Streamline your contract workflows and accelerate deal closure with intelligent automation.
         </p>
 
